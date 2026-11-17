@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Welcome | Best Side Club</title>
+  <meta name="description" content="Send us your products and choose your creators.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#FBFAF8">
+  <link rel="icon" href="assets/brand/bestsideclub-favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="assets/brand/bestsideclub-favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/bestsideclub-favicon-180.png">
+  <link rel="preload" href="fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/dm-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/brand.css">
+  <link rel="stylesheet" href="css/form.css">
+</head>
+<body>
+<div class="fpage">
+  <aside class="fside">
+    <a class="fside__logo" href="index.html" title="Back to the home page"><img src="assets/brand/bestsideclub-logo-line-paper.svg" width="300" height="44" alt="Best Side Club"></a>
+    <div class="fside__body">
+      <h1>Thank you. Let’s get started.</h1>
+      <p>Send us your products and choose your creators. We’ll take it from there.</p>
+      <ul class="fside__list">
+        <li>A person checks every photo and video before it’s sent</li>
+        <li>Your set arrives by email</li>
+        <li>A new set follows each month</li>
+      </ul>
+      <div class="fside__pics">
+        <img src="assets/img/bestsideclub-joanne-mug.webp" width="480" height="600" alt="Joanne holding a black ceramic mug in her kitchen">
+        <img src="assets/img/bestsideclub-kavita-earrings.webp" width="480" height="600" alt="Kavita wearing gold hoop earrings at a candlelit dinner">
+      </div>
+    </div>
+    <p class="fside__foot">Questions? <a href="mailto:team@bestsideclub.com" style="text-decoration:underline">team@bestsideclub.com</a></p>
+  </aside>
+
+  <main class="fmain">
+    <div class="fprog" data-prog><span data-prog-txt>Step 1</span><span class="fprog__bar"><i></i></span></div>
+
+    <form data-form data-flow novalidate>
+      <div data-steps></div>
+      <p class="ferr" data-error role="alert" hidden>Sorry, that didn't send. Please try again, or email us at team@bestsideclub.com.</p>
+      <div class="fnav">
+        <button class="fback" type="button" data-back hidden>Back</button>
+        <button class="btn btn--primary" type="submit" data-next><span>Continue</span></button>
+        <span class="fnav__hint">Takes about 5 minutes</span>
+      </div>
+    </form>
+
+    <div class="fdone" data-done hidden role="status">
+      <img src="assets/brand/bestsideclub-logo-stacked.svg" width="120" height="150" alt="Best Side Club">
+      <h2>Got it. We’re on it.</h2>
+      <p>We’ll confirm your order by email and tell you when to expect your content. Every message is read by a person.</p>
+      <a class="btn btn--secondary" href="index.html">Back to the home page</a>
+    </div>
+  </main>
+</div>
+
+<script>
+/* Questions for this form. Edit the labels freely; keep each "name" the same,
+   because it is the field name your automation receives. */
+window.FORM_CONFIG = {
+  id: 'onboarding',
+  webhook: '',            // paste the automation webhook URL here (Make / Zapier / n8n)
+  submitLabel: 'Send my products',
+  steps: [
+    { title: 'Welcome to the club.', text: 'A few details so we can match this to your order.', fields: [
+      { name: 'name', label: 'Your first name', type: 'text', required: true, autocomplete: 'given-name' },
+      { name: 'email', label: 'The email you used at checkout', type: 'email', required: true, autocomplete: 'email', error: 'Please enter a valid email address.' },
+      { name: 'shop_name', label: 'Your shop’s name', type: 'text', required: true },
+      { name: 'shop_url', label: 'Your website or Instagram', type: 'text', required: true, placeholder: 'yourshop.com or @yourshop' },
+      { name: 'plan', label: 'Your plan', type: 'chips', required: true, options: [['starter', 'Starter'], ['plus', 'Plus'], ['growth', 'Growth'], ['scale', 'Scale']] },
+    ]},
+    { title: 'Tell us about your products.', text: 'For each product: one to three photos from different angles, and a line on what it is. Phone photos are fine.', fields: [
+      { name: 'products', type: 'products', min: 1, max: { from: 'plan', map: { starter: 2, plus: 4, growth: 6, scale: 12 }, default: 6 }, fields: [
+        { name: 'photos', label: 'Photos', type: 'files', min: 1, max: 3 },
+        { name: 'name', label: 'Product name', type: 'text', required: true, placeholder: 'For example: Lina hoop earrings' },
+        { name: 'description', label: 'What is it?', type: 'textarea', required: true, placeholder: 'Material, size, colour, anything we should know.' },
+      ]},
+    ]},
+    { title: 'Choose your creators.', text: 'Keep the same creator every month, or try someone new.', fields: [
+      { name: 'creators', label: 'Creators', type: 'creators', required: true, max: { from: 'plan', map: { starter: 1, plus: 1, growth: 3, scale: 5 }, default: 1 }, allowAny: true },
+      { name: 'notes', label: 'Anything else we should know?', type: 'textarea', placeholder: 'Colours to avoid, a mood you like, a launch date…' },
+      { name: 'consent', type: 'consent', required: true, label: 'I understand the creators are AI-generated, and I won’t present them as real customers.' },
+    ]},
+    { title: 'All good?', text: 'Have a quick look before you send.', review: true },
+  ],
+};
+</script>
+<script src="js/form.js" defer></script>
+</body>
+</html>

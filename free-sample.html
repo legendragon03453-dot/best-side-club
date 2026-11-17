@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Free sample | Best Side Club</title>
+  <meta name="description" content="Send us one product and get two photos of it with one of our creators, free.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#FBFAF8">
+  <link rel="icon" href="assets/brand/bestsideclub-favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="assets/brand/bestsideclub-favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/bestsideclub-favicon-180.png">
+  <link rel="preload" href="fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/dm-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/brand.css">
+  <link rel="stylesheet" href="css/form.css">
+</head>
+<body>
+<div class="fpage">
+  <aside class="fside">
+    <a class="fside__logo" href="index.html" title="Back to the home page"><img src="assets/brand/bestsideclub-logo-line-paper.svg" width="300" height="44" alt="Best Side Club"></a>
+    <div class="fside__body">
+      <h1>See it on your own product first.</h1>
+      <p>Send us one product and we’ll send back two photos of it with one of our creators.</p>
+      <ul class="fside__list">
+        <li>Finished quality, no watermark</li>
+        <li>In your inbox within 24 hours of confirming your email</li>
+        <li>No card needed. One free sample per shop</li>
+      </ul>
+      <div class="fside__pics">
+        <img src="assets/img/bestsideclub-esme-face-oil.webp" width="480" height="600" alt="Esme holding a bottle of face oil in a marble bathroom">
+        <img src="assets/img/bestsideclub-esme-face-oil-2.webp" width="480" height="600" alt="Esme applying face oil with a dropper">
+      </div>
+    </div>
+    <p class="fside__foot">Questions? <a href="mailto:team@bestsideclub.com" style="text-decoration:underline">team@bestsideclub.com</a></p>
+  </aside>
+
+  <main class="fmain">
+    <div class="fprog" data-prog><span data-prog-txt>Step 1</span><span class="fprog__bar"><i></i></span></div>
+
+    <form data-form data-flow novalidate>
+      <div data-steps></div>
+      <p class="ferr" data-error role="alert" hidden>Sorry, that didn't send. Please try again, or email us at team@bestsideclub.com.</p>
+      <div class="fnav">
+        <button class="fback" type="button" data-back hidden>Back</button>
+        <button class="btn btn--primary" type="submit" data-next><span>Continue</span></button>
+        <span class="fnav__hint">Takes about 2 minutes</span>
+      </div>
+    </form>
+
+    <div class="fdone" data-done hidden role="status">
+      <img src="assets/brand/bestsideclub-logo-stacked.svg" width="120" height="150" alt="Best Side Club">
+      <h2>Thank you. Your request is in.</h2>
+      <p>Please check your inbox and confirm your email address. Your two photos arrive within 24 hours of confirming.</p>
+      <a class="btn btn--secondary" href="index.html">Back to the home page</a>
+    </div>
+  </main>
+</div>
+
+<script>
+/* Questions for this form. Edit the labels freely; keep each "name" the same,
+   because it is the field name your automation receives. */
+window.FORM_CONFIG = {
+  id: 'free-sample',
+  webhook: '',            // paste the automation webhook URL here (Make / Zapier / n8n)
+  submitLabel: 'Send my product',
+  steps: [
+    { title: 'First, about you.', text: 'We’ll send your two photos to this email address.', fields: [
+      { name: 'name', label: 'Your first name', type: 'text', required: true, autocomplete: 'given-name' },
+      { name: 'email', label: 'Your email address', type: 'email', required: true, autocomplete: 'email', error: 'Please enter a valid email address.' },
+      { name: 'shop_name', label: 'Your shop’s name', type: 'text', required: true },
+      { name: 'shop_url', label: 'Your website or Instagram', type: 'text', required: true, placeholder: 'yourshop.com or @yourshop', help: 'We check that the shop is real before we start.' },
+    ]},
+    { title: 'Now, your product.', text: 'One product, one to three photos of it. Good light, the whole product in frame and a plain background work best.', fields: [
+      { name: 'product_photos', label: 'Photos of your product', type: 'files', min: 1, max: 3 },
+      { name: 'product_description', label: 'What is it?', type: 'textarea', required: true, placeholder: 'For example: a gold-plated hoop earring, 3 cm across.' },
+      { name: 'category', label: 'Which category fits best?', type: 'chips', required: true, options: ['Fashion', 'Accessories', 'Jewellery', 'Bags', 'Footwear', 'Beauty', 'Home'] },
+    ]},
+    { title: 'Choose a creator.', text: 'Pick the face you’d like to see with your product.', fields: [
+      { name: 'creator', label: 'Creator', type: 'creators', required: true, max: 1, allowAny: true },
+      { name: 'consent', type: 'consent', required: true, label: 'I understand the creators are AI-generated, and I’m happy for Best Side Club to use my product photos to make my sample.' },
+    ]},
+    { title: 'All good?', text: 'Have a quick look before you send.', review: true },
+  ],
+};
+</script>
+<script src="js/form.js" defer></script>
+</body>
+</html>
